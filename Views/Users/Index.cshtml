@@ -1,0 +1,29 @@
+﻿@model List<Users>
+@{
+    ViewData["Title"] = "Users";
+}
+    <head>
+        <h2>Users</h2>
+    </head>
+<a class="btn btn-primary" asp-area="" asp-controller="Users" asp-action="Create">Create New User</a>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Name</td>
+                </tr>
+            </thead>
+
+            @foreach(var user in Model){
+                <tr>
+                <td>@user.UserId</td>
+                <td>@user.UserName</td>
+                    <td>
+                    <a asp-action="Details" asp-route-id="@user.UserId" class="btn btn-info">Details</a>
+                    <a asp-action="Edit" asp-route-id="@user.UserId" class="btn btn-secondary">Edit</a>
+                    <a asp-action="Index" asp-controller="UserId" asp-route-ProjectId="@user.UserId" class="btn btn-warning">View Bookings</a>
+                    </td>
+                </tr>
+            }
+    </table>

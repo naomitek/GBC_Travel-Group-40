@@ -1,0 +1,95 @@
+﻿@model GBC_Travel_Group_40.Models.Cart
+
+@{
+    ViewData["Title"] = "Details for Item";
+    // ViewBag.car  ViewBag.room
+    // ViewBag.flight  ViewBag.passenger
+    // ViewBag.bookingroom 
+    // ViewBag.bookingflight 
+    // ViewBag.bookingcar
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>Item</h4>
+    <hr />
+    <dl class="row">
+        <div>
+        <dt class="col-sm-10">
+            Booking for: @Model.ProductType
+        </dt>
+
+            @{
+                if (ViewBag.bookingflight != null)
+                {
+                    <dt class="col-sm-10">
+                        Airlines: @ViewBag.flight.Airlines
+                    </dt>
+                    <dt class="col-sm-10">
+                        @ViewBag.flight.Origen - @ViewBag.flight.Destination
+                    </dt>
+                    
+                    <b>Passenger</b>
+                    <dt class="col-sm-10">
+                        Name : @ViewBag.passenger.FirstName @ViewBag.passenger.LastName
+                    </dt>
+                    <dt class="col-sm-10">
+                        Email : @ViewBag.passenger.Email
+                    </dt>
+                    <dt class="col-sm-10">
+                        Address: @ViewBag.passenger.Address
+                    </dt>
+                    
+                }
+                if (ViewBag.bookingcar != null)
+                {
+                    <dt class="col-sm-10">
+                        Car Company: @ViewBag.car.CarCompany
+                    </dt>
+                    <dt class="col-sm-10">
+                        Car Model: @ViewBag.car.Model
+                    </dt>
+                    <b>Holder</b>
+                    <hr />                    
+                    <dt class="col-sm-10">
+                        Name: @ViewBag.bookingcar.NameOfHolder
+                    </dt>
+                    <dt class="col-sm-10">
+                        Phone: @ViewBag.bookingcar.PhoneOfHolder
+                    </dt>
+                }
+                if (ViewBag.bookingroom != null)
+                {
+                    <dt class="col-sm-10">
+                        Hotel: @ViewBag.room.HotelName
+                    </dt>
+                    <dt class="col-sm-10">
+                        Location: @ViewBag.room.Location
+                    </dt>
+                    <dt class="col-sm-10">
+                        Check In: @ViewBag.room.Checking
+                    </dt>
+                    <b>Holder</b>
+                    <hr />
+                    <dt class="col-sm-10">
+                        Name: @ViewBag.bookingroom.NameOfHolder
+                    </dt>
+                    <dt class="col-sm-10">
+                        Phone: @ViewBag.bookingroom.PhoneOfHolder
+                    </dt>
+                }
+            }
+        </>
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<div>    
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
+</div>

@@ -1,0 +1,36 @@
+﻿
+@model List<Cart>
+@{
+    decimal totalPrice = 0;
+}
+<div class="container">
+    <h2>Items</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Type</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                totalPrice = totalPrice + @item.Price;
+                <tr>
+                    <td>@item.ProductType</td>
+                    <td>@item.Price</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-info">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <span><b>Total Price: $@totalPrice</b> </span>
+
+</div>
+
+<a asp-action="Payment" class="btn btn-success">Confirm Payment</a>
